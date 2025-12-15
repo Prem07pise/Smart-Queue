@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 195 30% 98%;
+    --foreground: 200 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 25% 15%;
+
+    --primary: 174 62% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 195 25% 93%;
+    --secondary-foreground: 200 25% 25%;
+
+    --muted: 195 20% 95%;
+    --muted-foreground: 200 15% 45%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 195 25% 88%;
+    --input: 195 25% 88%;
+    --ring: 174 62% 42%;
+
+    --radius: 0.75rem;
+
+    --queue-waiting: 199 89% 48%;
+    --queue-called: 38 92% 50%;
+    --queue-serving: 174 62% 42%;
+    --queue-completed: 142 71% 45%;
+    --queue-cancelled: 0 72% 51%;
+
+    --ticket-bg: 0 0% 100%;
+    --ticket-border: 200 25% 15%;
+    --ticket-header: 174 62% 42%;
+  }
+
+  .dark {
+    --background: 200 25% 10%;
+    --foreground: 195 30% 95%;
+
+    --card: 200 25% 13%;
+    --card-foreground: 195 30% 95%;
+
+    --popover: 200 25% 13%;
+    --popover-foreground: 195 30% 95%;
+
+    --primary: 174 62% 50%;
+    --primary-foreground: 200 25% 10%;
+
+    --secondary: 200 25% 18%;
+    --secondary-foreground: 195 30% 90%;
+
+    --muted: 200 25% 18%;
+    --muted-foreground: 195 20% 60%;
+
+    --accent: 38 92% 55%;
+    --accent-foreground: 200 25% 10%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 50%;
+    --success-foreground: 200 25% 10%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 200 25% 10%;
+
+    --info: 199 89% 55%;
+    --info-foreground: 200 25% 10%;
+
+    --border: 200 25% 22%;
+    --input: 200 25% 22%;
+    --ring: 174 62% 50%;
+
+    --queue-waiting: 199 89% 55%;
+    --queue-called: 38 92% 55%;
+    --queue-serving: 174 62% 50%;
+    --queue-completed: 142 71% 50%;
+    --queue-cancelled: 0 72% 55%;
+
+    --ticket-bg: 200 25% 15%;
+    --ticket-border: 195 30% 80%;
+    --ticket-header: 174 62% 50%;
+  }
+
+  /* set sensible defaults for body and base elements */
+  /* avoid applying a Tailwind utility that may not be generated; set a sensible default border color instead */
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .queue-number {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Noto Mono", monospace;
+    font-size: 3.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .queue-number {
+      font-size: 4.5rem;
+    }
+  }
+
+  .ticket-container {
+    background-color: hsl(var(--ticket-bg));
+    border: 2px solid hsl(var(--ticket-border));
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .status-waiting {
+    background-color: hsl(var(--queue-waiting) / 0.2);
+    color: hsl(var(--queue-waiting));
+  }
+
+  .status-called {
+    background-color: hsl(var(--queue-called) / 0.2);
+    color: hsl(var(--queue-called));
+  }
+
+  .status-serving {
+    background-color: hsl(var(--queue-serving) / 0.2);
+    color: hsl(var(--queue-serving));
+  }
+
+  .status-completed {
+    background-color: hsl(var(--queue-completed) / 0.2);
+    color: hsl(var(--queue-completed));
+  }
+
+  .status-cancelled {
+    background-color: hsl(var(--queue-cancelled) / 0.2);
+    color: hsl(var(--queue-cancelled));
+  }
+
+  .gradient-primary {
+    background-image: linear-gradient(135deg, hsl(var(--primary)), color-mix(in srgb, hsl(var(--primary)) 80%, transparent));
+  }
+
+  .gradient-hero {
+    background-image: linear-gradient(135deg, hsl(var(--primary)), rgba(0,0,0,0.04), hsl(var(--info)));
+  }
+
+  .card-hover {
+    transition: all 300ms ease;
+  }
+  .card-hover:hover {
+    box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+    transform: translateY(-2px);
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(6px);
+    background-color: color-mix(in srgb, hsl(var(--card)) 80%, rgba(255,255,255,0.02));
+  }
+
+  /* Primary button utility for quick use */
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.4);
+    transition: transform 160ms ease, background-color 160ms ease;
+  }
+  .btn-primary:hover { background-color: color-mix(in srgb, hsl(var(--primary)) 90%, black 10%); }
+
+  /* Slightly stronger card elevation for prominence */
+  .card-elevated {
+    box-shadow: 0 8px 30px rgba(16,24,40,0.08);
+  }
+
+  /* Centered app container for pages that need tighter width */
+  .app-container {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  /* Provide a safe pulse keyframe in case Tailwind's base pulse isn't present */
+  @keyframes pulse {
+    0% { opacity: 1; transform: translateZ(0); }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .ticket-print {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #000 !important;
+    background: white !important;
+  }
+
+  .ticket-print * {
+    color: #000 !important;
+  }
+}
